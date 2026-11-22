@@ -1,0 +1,61 @@
+AI VIỆT STUDIO - AI CHẠY NGAY TRÊN MÁY BẠN
+==========================================
+
+5 tab trong ứng dụng:
+  • Trò chuyện    : chat với AI như ChatGPT, lưu lịch sử, chọn model
+  • So sánh Gemma : so sánh Gemma-3-270M gốc và bản "nghe lời tiếng Việt"
+  • Mô hình       : tải / xóa model AI, có thanh tiến độ
+  • Tài liệu      : tải bộ bài viết gốc (kèm hình) về máy, đọc offline, lưu thành .zip
+  • Cài đặt       : lời nhắc hệ thống, độ sáng tạo, cỡ chữ, giao diện sáng/tối
+
+Mọi thứ chạy trên máy bạn: câu hỏi không bị gửi lên Internet.
+
+
+CÁCH CHẠY (WINDOWS)
+-------------------
+  1) Cài Python 3.10 trở lên: https://www.python.org/downloads/
+     -> Khi cài, NHỚ TICK ô "Add python.exe to PATH".
+  2) Nên cập nhật driver NVIDIA mới nhất (nếu có card NVIDIA).
+  3) Giải nén file zip ra một thư mục (ví dụ D:\AIVietStudio). Đừng chạy trong file zip.
+  4) Nhấp đúp  CHAY_WINDOWS.bat
+       - Lần đầu: cài thư viện (khoảng 3 GB, 5-15 phút).
+       - Khi được hỏi "Ban co muon cai Ollama", nhấn  Y  để cài Ollama
+         (phần mềm miễn phí giúp chạy model AI lớn trên card đồ họa).
+  5) Trình duyệt tự mở  http://127.0.0.1:7860
+  6) Vào tab "Mô hình", bấm "Tải về" ở model qwen3:8b (khoảng 5,2 GB, khuyên dùng
+     cho card 8 GB). Tải xong bấm "Trò chuyện" là dùng được.
+  7) Giữ cửa sổ đen mở trong lúc dùng. Muốn tắt: đóng cửa sổ đó.
+
+Từ lần thứ hai: chỉ cần nhấp đúp CHAY_WINDOWS.bat.
+
+Hướng dẫn đầy đủ (có hình thức đẹp hơn) nằm trong tab "Tài liệu" của ứng dụng.
+
+
+LỖI THƯỜNG GẶP
+--------------
+  • "Khong tim thay Python": cài Python, tick "Add python.exe to PATH", chạy lại.
+  • Cài thư viện lỗi giữa chừng: xóa thư mục ".venv" rồi chạy lại.
+  • Tab Mô hình báo "Chưa kết nối được Ollama": mở ứng dụng Ollama
+    (biểu tượng con lạc đà ở khay hệ thống), rồi bấm "Kiểm tra lại".
+  • Trả lời chậm: dùng model nhỏ hơn (qwen3:4b) hoặc giảm "Độ dài ngữ cảnh"
+    trong tab Cài đặt.
+  • Cổng 7860 bận: ứng dụng tự chuyển sang 7861, 7862... xem địa chỉ trong cửa sổ đen.
+
+
+TÙY CHỌN
+--------
+  Linux / macOS :  bash chay_linux_mac.sh
+  Đổi cổng      :  CHAY_WINDOWS.bat --port 8000
+  Không mở web  :  CHAY_WINDOWS.bat --no-browser
+  Gemma chạy CPU:  CHAY_WINDOWS.bat --cpu
+
+Lịch sử trò chuyện và tài liệu đã tải lưu trong thư mục "data" cạnh ứng dụng.
+
+
+NGUỒN VÀ GIẤY PHÉP
+------------------
+  • Ollama: https://ollama.com  (mỗi model có giấy phép riêng của nhà phát triển)
+  • Gemma tiếng Việt: https://huggingface.co/Neeze/gemma-3-270m-it-vi-steer
+    (theo Gemma Terms of Use: https://ai.google.dev/gemma/terms)
+  • Tài liệu: tải trực tiếp từ trang gốc của tác giả khi bạn bấm "Tải".
+  • Font chữ Be Vietnam Pro: SIL Open Font License (static/fonts/OFL.txt)

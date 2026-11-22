@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Việt Studio</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230c7a63'/%3E%3Ctext x='32' y='42' font-family='Arial' font-weight='700' font-size='26' fill='white' text-anchor='middle'%3EVi%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="app.css">
+<script>
+  // Áp giao diện đã lưu trước khi vẽ trang để không bị nháy màu.
+  try {
+    const s = JSON.parse(localStorage.getItem("aiviet.appearance") || "{}");
+    if (s.theme === "light" || s.theme === "dark") document.documentElement.dataset.theme = s.theme;
+    if (s.font_size) document.documentElement.dataset.fs = s.font_size;
+  } catch {}
+</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <div class="logo" aria-hidden="true">Vi</div>
+    <div><b>AI Việt Studio</b><small>AI chạy ngay trên máy bạn</small></div>
+  </div>
+  <nav class="tabs" role="tablist" aria-label="Các tab chính">
+    <button class="tab" role="tab" data-tab="chat" aria-selected="true"></button>
+    <button class="tab" role="tab" data-tab="compare" aria-selected="false"></button>
+    <button class="tab" role="tab" data-tab="models" aria-selected="false"></button>
+    <button class="tab" role="tab" data-tab="docs" aria-selected="false"></button>
+    <button class="tab" role="tab" data-tab="settings" aria-selected="false"></button>
+  </nav>
+  <div class="top-status">
+    <span class="pill" id="pillOllama" title="Trạng thái Ollama"><span class="dot wait"></span>Ollama</span>
+    <span class="pill" id="pillGpu" hidden></span>
+    <button class="icon-btn" id="themeBtn" type="button" aria-label="Đổi giao diện sáng/tối" title="Đổi giao diện sáng/tối"></button>
+  </div>
+</header>
+<main>
+  <section class="view" id="view-chat" role="tabpanel"></section>
+  <section class="view" id="view-compare" role="tabpanel" hidden></section>
+  <section class="view page" id="view-models" role="tabpanel" hidden></section>
+  <section class="view" id="view-docs" role="tabpanel" hidden></section>
+  <section class="view page" id="view-settings" role="tabpanel" hidden></section>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

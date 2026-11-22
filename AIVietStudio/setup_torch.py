@@ -1,6 +1,6 @@
 """Cài PyTorch phù hợp với máy: có GPU NVIDIA thì cài bản CUDA, không thì cài bản CPU.
 
-Được gọi tự động bởi CHAY_WINDOWS.bat / chay_linux_mac.sh. Có thể chạy tay:
+Được gọi tự động bởi CHAY_WINDOWS.bat / chay_linux_mac.sh (cần cho tab So sánh Gemma). Chạy tay:
     python setup_torch.py
 """
 import platform
