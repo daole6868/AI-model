@@ -1,0 +1,4 @@
+# PyTorch được cài riêng bởi setup_torch.py (để chọn đúng bản GPU/CPU cho máy)
+transformers>=5.14,<6
+huggingface_hub>=1.0
+safetensors

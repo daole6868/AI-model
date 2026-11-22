@@ -1,0 +1,89 @@
+GEMMA VIỆT - AI CHẠY NGAY TRÊN MÁY BẠN
+=====================================
+
+Ứng dụng có giao diện web để trò chuyện và SO SÁNH hai phiên bản:
+  • Gemma gốc       : google/gemma-3-270m-it
+  • Bản tiếng Việt  : Neeze/gemma-3-270m-it-vi-steer (Gemma + 640 con số giúp
+                      model chịu nghe lời dặn "Hãy trả lời bằng tiếng Việt")
+
+Mọi thứ chạy trên máy bạn: câu hỏi không bị gửi lên Internet.
+
+
+1. CẦN CHUẨN BỊ
+---------------
+  • Windows 10/11 (Linux và macOS cũng chạy được, xem mục 5)
+  • Python 3.10 trở lên: https://www.python.org/downloads/
+      -> Khi cài, NHỚ TICK ô "Add python.exe to PATH"
+  • Internet cho lần chạy đầu tiên (tải khoảng 3,5 GB: PyTorch + model)
+  • Card NVIDIA (ví dụ RTX 4060) là tùy chọn: có thì chạy nhanh hơn nhiều,
+    không có thì chạy bằng CPU vẫn được.
+    Nên cập nhật driver NVIDIA mới nhất trước khi cài.
+
+
+2. CÁCH CHẠY
+------------
+  1) Giải nén file zip ra một thư mục (ví dụ D:\GemmaVietApp).
+     Đừng chạy thẳng trong file zip.
+  2) Nhấp đúp vào file  CHAY_WINDOWS.bat
+  3) Lần đầu: chờ cài thư viện (5-15 phút) và tải model (khoảng 540 MB).
+  4) Trình duyệt sẽ tự mở trang  http://127.0.0.1:7860
+     (nếu không tự mở, hãy copy địa chỉ hiện trong cửa sổ đen dán vào trình duyệt).
+  5) Giữ cửa sổ đen mở trong lúc dùng. Muốn tắt: đóng cửa sổ đó hoặc nhấn Ctrl+C.
+
+  Từ lần thứ hai trở đi chỉ cần nhấp đúp CHAY_WINDOWS.bat, vài giây là xong.
+
+
+3. CÁCH DÙNG GIAO DIỆN
+----------------------
+  • Chế độ:
+      - So sánh : hỏi một lần, xem hai câu trả lời cạnh nhau (gốc | bản Việt)
+      - Bản Việt: chỉ chat với bản tiếng Việt
+      - Bản gốc : chỉ chat với Gemma gốc
+  • Độ mạnh vector tiếng Việt: 0 = Gemma gốc, 1 = đúng bản của tác giả,
+    lớn hơn 1 = đẩy mạnh hơn, số âm = đẩy ngược (ít tiếng Việt hơn).
+  • Độ dài tối đa: giới hạn số token của mỗi câu trả lời (mặc định 1024).
+    Model tự dừng khi trả lời xong, không bị cắt giữa chừng.
+  • Độ sáng tạo: 0 = câu trả lời ổn định, lặp lại được; cao hơn = đa dạng hơn.
+  • Chống lặp ý: mặc định 1.10 cho câu trả lời đầy đủ, ít lặp.
+    Đặt 1.00 để giống hệt cách tác giả đo.
+  • "Tự thêm lời dặn tiếng Việt": tự thêm câu "Hãy trả lời bằng tiếng Việt."
+    vào CUỐI câu hỏi (vị trí hiệu quả nhất theo bài thử nghiệm).
+  • Mỗi câu trả lời có nhãn "Tiếng Việt / Tiếng Anh", số token, tốc độ,
+    và nút Sao chép. Ô "VI x/y" ở đầu cột đếm số câu trả lời bằng tiếng Việt.
+  • Nút "Dừng" để ngắt câu trả lời đang chạy; "Trò chuyện mới" để xóa lịch sử.
+  • Nút "Tối/Sáng" để đổi giao diện.
+
+  Lưu ý: đây là model rất nhỏ (270 triệu tham số), chủ yếu để thử nghiệm.
+  Nó có thể sai kiến thức hoặc lẫn tiếng Anh. Bản tiếng Việt chỉ thay đổi
+  thói quen chọn ngôn ngữ, không làm model thông minh hơn.
+
+
+4. LỖI THƯỜNG GẶP
+-----------------
+  • "Khong tim thay Python": cài Python (mục 1), nhớ tick "Add python.exe to PATH",
+    rồi chạy lại.
+  • Cài thư viện bị lỗi giữa chừng: xóa thư mục ".venv" trong thư mục ứng dụng
+    rồi chạy lại CHAY_WINDOWS.bat.
+  • Có card NVIDIA nhưng ô trạng thái ghi "CPU": cập nhật driver NVIDIA,
+    xóa thư mục ".venv", rồi chạy lại.
+  • Cổng 7860 đang bận: ứng dụng tự chuyển sang cổng 7861, 7862...
+    Xem địa chỉ đúng trong cửa sổ đen.
+
+
+5. TÙY CHỌN NÂNG CAO
+--------------------
+  Linux / macOS:   bash chay_linux_mac.sh
+  Ép chạy CPU:     CHAY_WINDOWS.bat --cpu
+  Đổi cổng:        CHAY_WINDOWS.bat --port 8000
+  Không mở web:    CHAY_WINDOWS.bat --no-browser
+
+
+6. NGUỒN VÀ GIẤY PHÉP
+---------------------
+  • Model: https://huggingface.co/Neeze/gemma-3-270m-it-vi-steer
+    (dùng theo Gemma Terms of Use: https://ai.google.dev/gemma/terms)
+  • Bài viết gốc: https://neeze.github.io/docs/practical-ai/weight-programming-lfm3-to-gemma/
+  • Font chữ Be Vietnam Pro: SIL Open Font License (static/fonts/OFL.txt)
+  • Ứng dụng tự gắn vector 640 số bằng một hook giống hệt file
+    modeling_gemma3_vi.py của tác giả (đã kiểm tra: kết quả trùng khớp tuyệt đối),
+    nên không cần chạy code tải từ Internet (trust_remote_code).
